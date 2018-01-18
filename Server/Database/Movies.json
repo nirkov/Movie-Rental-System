@@ -1,0 +1,52 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "b",
+      "bannedCountries": [],
+      "price": "5",
+      "availableAmount": "5",
+      "totalAmount": "5"
+    },
+    {
+      "id": "1",
+      "name": "c",
+      "bannedCountries": [],
+      "price": "5",
+      "availableAmount": "5",
+      "totalAmount": "5"
+    },
+    {
+      "id": "1",
+      "name": "a",
+      "bannedCountries": [],
+      "price": "5",
+      "availableAmount": "5",
+      "totalAmount": "5"
+    },
+    {
+      "id": "1",
+      "name": "a",
+      "bannedCountries": [],
+      "price": "5",
+      "availableAmount": "5",
+      "totalAmount": "5"
+    },
+    {
+      "id": "3",
+      "name": "The Godfather",
+      "bannedCountries": [],
+      "price": "2",
+      "availableAmount": "7",
+      "totalAmount": "7"
+    },
+    {
+      "id": "4",
+      "name": "Alice in wonderland",
+      "bannedCountries": [],
+      "price": "12",
+      "availableAmount": "7",
+      "totalAmount": "7"
+    }
+  ]
+}
