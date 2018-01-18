@@ -59,25 +59,19 @@ public class UserJsonGenerator {
     }
 
 
-
-        private class IntegerAdapter implements JsonSerializer<Integer> {
-            @Override
-            public JsonElement serialize(Integer num, Type type, JsonSerializationContext jsonSerializationContext) {
-                String value = num.toString();
-                return new JsonPrimitive(value);
-            }
+    private class IntegerAdapter implements JsonSerializer<Integer> {
+        @Override
+        public JsonElement serialize(Integer num, Type type, JsonSerializationContext jsonSerializationContext) {
+             String value = num.toString();
+             return new JsonPrimitive(value);
         }
+    }
 
 
-        private class UsersJ {
-            private LinkedList<User> users;
-
-            public UsersJ ( ConcurrentHashMap<String , User> allUser){
-                users = new LinkedList<>(allUser.values());
-            }
+    private class UsersJ {
+        private LinkedList<User> users;
+        public UsersJ ( ConcurrentHashMap<String , User> allUser){
+            users = new LinkedList<>(allUser.values());
         }
-
-
-
-
+    }
 }
