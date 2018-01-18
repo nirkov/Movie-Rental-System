@@ -83,7 +83,7 @@ public class ShareDataManager {
     public boolean tryLogOut(Integer ID){
             if(all_login_users.containsKey(ID)){
                 all_login_users.remove(ID);
-                VM.inc();                                       /*********/
+                VM.inc();                                       
                 return true;
             }
             return false;
@@ -134,22 +134,22 @@ public class ShareDataManager {
         }
 
         protected Movie getMovie(String name){
-            MOVIE_RW_LOCK.writeLock().lock();                                //Locked the name until the thread take the movie or get sleep
+            MOVIE_RW_LOCK.writeLock().lock();                 //Locked the name until the thread take the movie or get sleep
             Movie temp = null;
-            if(all_movie.containsKey(name)){                                 //if the movie exists in the system
-                if(!locked_movie.get(name)){                                 //and if there is no thread that currently owns the movie
-                    temp =  all_movie.get(name);                             //this thread take the movie
-                    locked_movie.replace(name,false,true);  //locked the movie
-                    MOVIE_RW_LOCK.writeLock().unlock();                      //and release the writelock key
+            if(all_movie.containsKey(name)){                  //if the movie exists in the system
+                if(!locked_movie.get(name)){                  //and if there is no thread that currently owns the movie
+                    temp =  all_movie.get(name);              //this thread take the movie
+                    locked_movie.replace(name,false,true);    //locked the movie
+                    MOVIE_RW_LOCK.writeLock().unlock();       //and release the writelock key
                 }else{
-                    MOVIE_RW_LOCK.writeLock().unlock();                      //else if the movie exists but locked
+                    MOVIE_RW_LOCK.writeLock().unlock();       //else if the movie exists but locked
                     try{
-                        VM.wait(VM.getVersion()+1);                  //the tread go to sleep until the movie will release
+                        VM.wait(VM.getVersion()+1);           //the tread go to sleep until the movie will release
                     }catch (InterruptedException e){}
-                    temp = getMovie(name);                                          //and when he wake up he try take the movie again
+                    temp = getMovie(name);                    //and when he wake up he try take the movie again
                 }
             }else{
-                MOVIE_RW_LOCK.writeLock().unlock();                          //else if the movie not exists we return null
+                MOVIE_RW_LOCK.writeLock().unlock();           //else if the movie not exists we return null
                 return temp;    //return null
             }
          return temp;    //return movie
