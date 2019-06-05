@@ -11,9 +11,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ShareDataManager {
 
-    private final static ReadWriteLock MOVIE_RW_LOCK = new ReentrantReadWriteLock();
+    private final static ReadWriteLock MOVIE_RW_LOCK       = new ReentrantReadWriteLock();
     private final static ReadWriteLock JSON_RW_LOCK_MOVIES = new ReentrantReadWriteLock();
-    private final static ReadWriteLock JSON_RW_LOCK_USERS = new ReentrantReadWriteLock();
+    private final static ReadWriteLock JSON_RW_LOCK_USERS  = new ReentrantReadWriteLock();
 
     private static MovieJsonGenerator movie_json_generator = MovieJsonGenerator.getInstance();
     private static UserJsonGenerator user_json_generator = UserJsonGenerator.getInstance();
