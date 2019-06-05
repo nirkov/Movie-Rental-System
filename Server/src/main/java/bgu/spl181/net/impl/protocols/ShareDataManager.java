@@ -1,6 +1,4 @@
 package bgu.spl181.net.impl.protocols;
-
-
 import bgu.spl181.net.impl.ConnectionsToServer;
 
 import java.util.*;
@@ -16,23 +14,23 @@ public class ShareDataManager {
     private final static ReadWriteLock JSON_RW_LOCK_USERS  = new ReentrantReadWriteLock();
 
     private static MovieJsonGenerator movie_json_generator = MovieJsonGenerator.getInstance();
-    private static UserJsonGenerator user_json_generator = UserJsonGenerator.getInstance();
+    private static UserJsonGenerator  user_json_generator  = UserJsonGenerator.getInstance();
 
-    protected static ConcurrentHashMap<String , User> all_users_in_system = new ConcurrentHashMap();
-    protected static ConcurrentHashMap<Integer , User> all_login_users = new ConcurrentHashMap();
-    protected static ConcurrentHashMap<String , Movie> all_movie = new ConcurrentHashMap();
-    protected static  ConcurrentHashMap<String , Boolean> locked_movie = new ConcurrentHashMap();
+    protected static ConcurrentHashMap<String, User>    all_users_in_system = new ConcurrentHashMap();
+    protected static ConcurrentHashMap<Integer, User>   all_login_users     = new ConcurrentHashMap();
+    protected static ConcurrentHashMap<String, Movie>   all_movie           = new ConcurrentHashMap();
+    protected static ConcurrentHashMap<String, Boolean> locked_movie        = new ConcurrentHashMap();
+    
     private static ArrayList<Integer> moviesId = new ArrayList<>();
 
     protected static int movie_id = 0;
+    private   static VersionMonitor VM = new VersionMonitor();
     protected static ConnectionsToServer connections;
-    private static VersionMonitor VM = new VersionMonitor();
-
-
 
     public void Loading_Initial_Information(String pathUser, String pathMovie) {
         LinkedList<Movie> reloadMovies = movie_json_generator.setPathReloadData(pathMovie);
-        LinkedList<User> reloadUsers = user_json_generator.setPathReloadData(pathUser);
+        LinkedList<User>  reloadUsers  = user_json_generator.setPathReloadData(pathUser);
+        
         reloadMovies.forEach((movie) -> {
             all_movie.put(movie.getName(),movie);
             locked_movie.put(movie.getName(),false);
@@ -41,9 +39,11 @@ public class ShareDataManager {
                 movie_id = movie.getID();
             }
         });
+        
         reloadUsers.forEach((user) -> {
             all_users_in_system.put(user.getName(),user);
         });
+        
         Collections.sort(moviesId);
         Collections.reverse(moviesId);
     }
@@ -115,8 +115,6 @@ public class ShareDataManager {
     protected User getSpecificUser(int id){ return all_login_users.get(id); }
 
     protected boolean isLogin(Integer id){ return all_login_users.containsKey(id) ; }
-
-     // Function for ..
 
 
     /**
